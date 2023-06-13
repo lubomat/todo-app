@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 public class TaskController {
+
     public static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository repository;
 
@@ -27,7 +28,7 @@ public class TaskController {
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
-    @GetMapping(value = "/tasks",params = {"!sort", "!page","!size"})
+    @GetMapping(value = "/tasks", params = {"!sort", "!page", "!size"})
     ResponseEntity<List<Task>> readAllTasks() {
         logger.warn("Exposing all the tasks!");
         return ResponseEntity.ok(repository.findAll());
@@ -38,6 +39,7 @@ public class TaskController {
         logger.warn("Custom pageable");
         return ResponseEntity.ok(repository.findAll(page).getContent());
     }
+
     @GetMapping("/tasks/{id}")
     ResponseEntity<Task> readTask(@PathVariable int id) {
         return repository.findById(id)
@@ -46,12 +48,12 @@ public class TaskController {
     }
 
     @PutMapping("/tasks/{id}")
-        ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
-        if(!repository.existById(id)) {
+    ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
+        if (!repository.existById(id)) {
             return ResponseEntity.notFound().build();
         }
         toUpdate.setId(id);
         repository.save(toUpdate);
         return ResponseEntity.noContent().build();
-        }
+    }
 }
