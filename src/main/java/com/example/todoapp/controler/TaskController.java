@@ -24,7 +24,7 @@ public class TaskController {
 
     @PostMapping("/tasks")
     ResponseEntity<Task> ceateTask(@RequestBody @Valid Task toCreate) {
-        logger.info("Użytkownik wchodzi na task");
+        logger.info("Użytkownik utworzył task");
         Task result = repository.save(toCreate);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
