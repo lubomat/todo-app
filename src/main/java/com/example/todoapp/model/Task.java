@@ -14,6 +14,8 @@ public class Task {
     private String description;
     private boolean done;
     private LocalDateTime deadline;
+    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
 
     public Task() {
     }
