@@ -20,15 +20,25 @@ public class Task {
     public Task() {
     }
 
-    public int getId() {return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    void setId(int id) {
+        this.id = id;
+    }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public boolean isDone() { return done;}
+    public boolean isDone() {
+        return done;
+    }
 
     public void setDone(boolean done) {
         this.done = done;
@@ -41,4 +51,23 @@ public class Task {
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
+    public void updateFrom(final Task source) {
+        description = source.description;
+        done = source.done;
+        deadline = source.deadline;
+    //    createdOn = source.createdOn;
+    //    updatedOn = source.updatedOn;
+    }
+
+    @PrePersist
+    void prePersist(){
+        createdOn = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preMerge() {
+        updatedOn = LocalDateTime.now();
+    }
+
+
 }
