@@ -25,7 +25,7 @@ public class TaskController {
 
     @PostMapping("/tasks")
     ResponseEntity<Task> ceateTask(@RequestBody @Valid Task toCreate) {
-        logger.info("Użytkownik utworzył task");
+        logger.info("Task created");
         Task result = repository.save(toCreate);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
@@ -50,6 +50,7 @@ public class TaskController {
     }
     @PutMapping("/tasks/{id}")
     ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
+        logger.info("Task updated");
         if (!repository.existById(id)) {
             return ResponseEntity.notFound().build();
         }
