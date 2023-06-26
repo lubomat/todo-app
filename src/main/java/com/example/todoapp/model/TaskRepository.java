@@ -16,6 +16,7 @@ public interface TaskRepository {
 
     boolean existById(Integer id);      //po dodaniu tego bez implementacji w sqlrepository blad
 
+    boolean existsByDoneIsFalseAndGroup_Id(Integer groupId);
     List<Task> findByDone(@Param("state") boolean done);
 
     Task save(Task entity);
