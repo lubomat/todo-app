@@ -28,7 +28,7 @@ public class InfoController {
     @GetMapping("/info/prop")
     boolean myProp() {
         log.info("Użytkownik wszedł do prop");
-        return myProp.isAllowMultipleTasksFromTemplate();
+        return myProp.getTemplate().isAllowMultipleTasks();
     }
 }
 
