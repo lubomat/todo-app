@@ -84,7 +84,18 @@ class ProjectServiceTest {
         return mockGroupRepository;
     }
 
-    private static TaskConfigurationProperties configurationReturning(boolean result) {
+    @Test
+    @DisplayName("shoult create a new group from project")
+    void createGroup_configurationOk_existingProject_createAndSavesGroup() {
+        // given
+        var mockRepository = mock(ProjectRepository.class);
+        when(mockRepository.findById(anyInt())).thenReturn(Optional.empty());
+        // and
+        TaskConfigurationProperties mockConfig = configurationReturning(true);
+
+    }
+
+    private TaskConfigurationProperties configurationReturning(boolean result) {
         var mockTemplate = mock(TaskConfigurationProperties.Template.class);
         when(mockTemplate.isAllowMultipleTasks()).thenReturn(result);
         var mockConfig = mock(TaskConfigurationProperties.class);

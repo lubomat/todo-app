@@ -20,6 +20,9 @@ public class Project {
 
     private Set<ProjectStep> steps;
 
+    public Project() {
+    }
+
     public int getId() {
         return id;
     }
